@@ -1,0 +1,48 @@
+image:
+  repository: otel/opentelemetry-collector-contrib
+
+mode: deployment
+replicaCount: 1
+
+config:
+  exporters:
+    debug:
+      verbosity: basic
+    otlp:
+      endpoint: jaeger-collector:4317
+      tls:
+        insecure: true
+
+  processors:
+    batch:
+      send_batch_max_size: 50
+      send_batch_size: 10
+      timeout: 2s
+
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+  service:
+    pipelines:
+      logs:
+        receivers: [otlp]
+        processors:
+          [batch]
+        exporters: [otlp, debug]
+      metrics:
+        receivers: [otlp]
+        processors:
+          [batch]
+        exporters: [otlp, debug]
+      traces:
+        receivers: [otlp]
+        processors:
+          [batch]
+        exporters: [otlp, debug]
+    telemetry:
+      logs:
+        level: "info"

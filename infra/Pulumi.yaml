@@ -1,0 +1,5 @@
+name: web-app-infra
+runtime:
+  name: nodejs
+  options:
+    typescript: false

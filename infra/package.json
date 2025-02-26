@@ -1,0 +1,26 @@
+{
+    "name": "web-app-infra",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "devDependencies": {
+        "@tsconfig/node22": "^22.0.0",
+        "@types/node": "^18",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "@pulumi/kubernetes": "^4.0.0",
+        "@pulumi/pulumi": "^3.113.0",
+        "@tsconfig/strictest": "^2.0.5"
+    },
+    "scripts": {
+        "build": "rm -rf dist && tsc",
+        "pulumi": "pulumi",
+        "pulumi:local": "pulumi login file://./state",
+        "pulumi:deploy": "yarn build && echo 'Successfully built package, running pulumi up...' && pulumi up",
+        "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy"
+    },
+    "packageManager": "yarn@4.3.1",
+    "engines": {
+        "node": ">=22.11.0"
+    }
+}
