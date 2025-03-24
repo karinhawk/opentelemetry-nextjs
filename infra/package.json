@@ -17,7 +17,8 @@
         "pulumi": "pulumi",
         "pulumi:local": "pulumi login file://./state",
         "pulumi:deploy": "yarn build && echo 'Successfully built package, running pulumi up...' && pulumi up",
-        "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy"
+        "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy",
+        "forward": "kubectl port-forward svc/jaeger-collector 4317:4317 & kubectl port-forward svc/jaeger-query 16686:16686 & kubectl port-forward svc/web-app 3000:3000"
     },
     "packageManager": "yarn@4.3.1",
     "engines": {
