@@ -1,17 +1,18 @@
 'use client'
 import styles from "./page.module.css";
-import {GET} from "./api/hello/route.ts"
+import {getLive, getSearchin} from "./api/hello/route.ts"
 import React, {useState} from "react";
 
 
 
 export default function Home() {
-  const [message, setMessage] = useState(null)
+  const [message, setMessage] = useState({})
 
   const hiThere = async () => {
-    const hi = await GET()
-    const thing = await hi.json()
-    setMessage(thing)
+    const result = await getLive()
+    const results = await result.json()
+    setMessage(results.results)
+    console.log(message)
   }
 
   return (
@@ -19,7 +20,7 @@ export default function Home() {
       <main className={styles.main}>
         <button onClick={hiThere}>hi</button>
         {message &&
-        <div><p>{message["hello"]}</p></div>
+        <div><p>{message[0]["channel_name"]}</p></div>
         }
       </main>
     </div>
