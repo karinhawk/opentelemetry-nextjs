@@ -10,7 +10,8 @@ export default function Home() {
 
   const hiThere = async () => {
     const hi = await GET()
-    setMessage(await hi.json())
+    const thing = await hi.json()
+    setMessage(thing)
   }
 
   return (
@@ -18,7 +19,7 @@ export default function Home() {
       <main className={styles.main}>
         <button onClick={hiThere}>hi</button>
         {message &&
-        <div>{message}</div>
+        <div><p>{message["hello"]}</p></div>
         }
       </main>
     </div>

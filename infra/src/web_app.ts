@@ -29,7 +29,7 @@ export class WebApp extends pulumi.ComponentResource {
               {
                 name: 'web-app',
                 image: 'docker.io/web-app/app',
-                imagePullPolicy: 'IfNotPresent',
+                imagePullPolicy: 'Always',
                 ports: [
                   {
                     containerPort: 3000
