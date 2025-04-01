@@ -6,22 +6,24 @@ import React, {useState} from "react";
 
 
 export default function Home() {
-  const [message, setMessage] = useState({})
+  const [message, setMessage] = useState(null)
 
   const hiThere = async () => {
     const result = await getLive()
     const results = await result.json()
-    setMessage(results.results)
-    console.log(message)
+    console.log(results)
+    setMessage(results)
   }
 
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <h1>NTS Logger</h1>
         <button onClick={hiThere}>hi</button>
-        {message &&
-        <div><p>{message[0]["channel_name"]}</p></div>
-        }
+        {message && 
+        <div>
+          
+          </div>}
       </main>
     </div>
   );
