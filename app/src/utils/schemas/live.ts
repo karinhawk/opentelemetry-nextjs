@@ -18,7 +18,7 @@ export const livePayload = z.object({
                 location_long: z.string().optional(),
                 intensity: z.unknown().optional(),
                 media: z.object({
-                    background_medium: z.string().optional()
+                    background_medium_large: z.string().optional()
                 }).optional()
             }).optional()
         }).optional()
@@ -32,7 +32,7 @@ export const livePayload = z.object({
 
     const { name, description, external_links, moods, genres, location_long, intensity, media } = details
 
-    const { background_medium } = media
+    const { background_medium_large } = media
 
     return {
         channelName: channel_name,
@@ -45,6 +45,6 @@ export const livePayload = z.object({
         genres,
         location: location_long,
         intensity,
-        picture: background_medium
+        picture: background_medium_large
     }
 })
