@@ -45,6 +45,16 @@ export default async function Home() {
               </p>
               <Image src={live.picture} width={270} height={180} alt="piccy" />
               <p>{live.description}</p>
+              {live.genres.length > 0 && (
+                <details>
+                  <summary>genres</summary>
+                  <ul>
+                    {live.genres.map((genre: Record<string, string>) => {
+                      return <li key={genre.id}>{genre.value}</li>
+                    })}
+                  </ul>
+                </details>
+              )}
               <h4>social media</h4>
               <ul>
                 {live.links.map((link: string) => {
