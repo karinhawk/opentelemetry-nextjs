@@ -1,5 +1,6 @@
 image:
   repository: otel/opentelemetry-collector-contrib
+  tag: 0.121.0
 
 mode: deployment
 replicaCount: 1
@@ -30,18 +31,15 @@ config:
     pipelines:
       logs:
         receivers: [otlp]
-        processors:
-          [batch]
+        processors: [batch]
         exporters: [otlp, debug]
       metrics:
         receivers: [otlp]
-        processors:
-          [batch]
+        processors: [batch]
         exporters: [otlp, debug]
       traces:
         receivers: [otlp]
-        processors:
-          [batch]
+        processors: [batch]
         exporters: [otlp, debug]
     telemetry:
       logs:

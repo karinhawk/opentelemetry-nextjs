@@ -3,6 +3,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
         "@tsconfig/node22": "^22.0.0",
         "@types/node": "^18",
         "typescript": "^5.0.0"
@@ -15,6 +16,8 @@
     "scripts": {
         "build": "rm -rf dist && tsc",
         "pulumi": "pulumi",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
         "pulumi:local": "pulumi login file://./state",
         "pulumi:deploy": "yarn build && echo 'Successfully built package, running pulumi up...' && pulumi up",
         "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy",

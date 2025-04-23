@@ -1,7 +1,8 @@
-import { WebApp } from "./web_app";
+import { WebApp } from './web_app'
 
 import * as k8s from '@pulumi/kubernetes'
 import * as pulumi from '@pulumi/pulumi'
+import { Database } from './database'
 
 const values = new pulumi.asset.FileAsset('./src/values/collector.values.yaml')
 const jValues = new pulumi.asset.FileAsset('./src/values/jaeger.values.yaml')
@@ -21,7 +22,8 @@ new k8s.helm.v4.Chart('jaeger', {
   },
   chart: 'jaeger',
   name: 'jaeger',
-  valueYamlFiles: [jValues]
+  valueYamlFiles: [jValues],
 })
 
-new WebApp('web-app', {})
+new Database('mongodb')
+new WebApp('web-app')

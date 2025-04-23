@@ -25,10 +25,13 @@ Three containers should deploy. One for the app, one for an OpenTelemetry collec
 
 Next, you need to port-forward the jaeger collector so it can be sent traces by our collector.
 
-Run `kubectl get services` to see the services available in our Kubernetes cluster (shown in Docker Desktop). `jaeger-collector` should be listed. If you have deployed the app into a namespace you will need to run all kubectl commands with the namespace you have deployed the app into. To port-forward the jaeger-collector simply run: `kubectl port-forward svc/jaeger-collector 4317:4317`. 
+Run `kubectl get services` to see the services available in our Kubernetes cluster (shown in Docker Desktop). `jaeger-collector` should be listed. If you have deployed the app into a namespace you will need to run all kubectl commands with the namespace you have deployed the app into. To port-forward the jaeger-collector simply run: `kubectl port-forward svc/jaeger-collector 4317:4317`.
 
 To view telemetry we need to now port forward jaeger-query. Run `kubectl port-forward svc/jaeger-query 16686:16686`.
 
 Finally, to access the app and get telemetry into our backend, we need to port-forward the app. Run `kubectl port-forward svc/web-app 3000:3000` to access the app.
 
 Our handy command `yarn forward` will execute all of these commands in parallel so you don't need to open a terminal for each.
+
+Jaeger will be accessible at: `localhost:16686`
+The app will be accessible at `localhost:3000`
