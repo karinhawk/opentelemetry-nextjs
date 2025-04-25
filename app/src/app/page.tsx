@@ -1,7 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import type { z } from 'zod'
 import type { livePayload } from '../utils/schemas/live.ts'
-import { getLive } from './api/shows/route.ts'
+import { getLive } from './api/shows/shows.ts'
+import FavouriteShowButton from './button.tsx'
 import styles from './page.module.css'
 
 function findTimeDifference(startDate: number, endDate: number): number {
@@ -30,6 +32,9 @@ export default async function Home() {
         <h3>
           {dateNowStr} - {timeNowStr}
         </h3>
+        <Link href="/favourites">
+          <h3>FAVOURITES</h3>
+        </Link>
         {lives.map(live => {
           const startTimeDate = caclulateTimeFromString(live.startTime)
           const endTimeDate = caclulateTimeFromString(live.endTime)
@@ -65,8 +70,7 @@ export default async function Home() {
                   )
                 })}
               </ul>
-              <button type="button">Add show to favourites</button>
-              <button type="button">Add host to favourites</button>
+              <FavouriteShowButton {...live} />
             </div>
           )
         })}

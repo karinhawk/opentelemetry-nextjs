@@ -15,23 +15,18 @@ export async function getLive(): Promise<Response> {
   })
 }
 
-export async function getSearchin() {
-  const ntsLiveCurrent = await fetch(
-    'https://www.nts.live/api/v2/search/episodes',
-  )
-  const hi = await ntsLiveCurrent.json()
-  // console.log(hi)
+// export async function getSearchin() {
+//   const ntsLiveCurrent = await fetch(
+//     'https://www.nts.live/api/v2/search/episodes',
+//   )
+//   const hi = await ntsLiveCurrent.json()
+//   // console.log(hi)
 
-  return new Response(JSON.stringify(ntsLiveCurrent), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  })
-}
-
-// TODO!
-// idea = saving nts shows and seeing them later on another page!
-// mongoDB database helm chart
-// CRUD operations on that db
+//   return new Response(JSON.stringify(ntsLiveCurrent), {
+//     status: 200,
+//     headers: { 'Content-Type': 'application/json' },
+//   })
+// }
 
 // https://www.nts.live/api/v2/live - gets current live show
 
