@@ -76,3 +76,5 @@ export const livePayload = z
       picture: background_medium_large,
     }
   })
+
+export type Show =  z.infer<typeof livePayload>

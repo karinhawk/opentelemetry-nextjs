@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { z } from 'zod'
-import type { livePayload } from '../utils/schemas/live.ts'
+import type { livePayload, Show } from '../utils/schemas/live.ts'
 import { getLive } from './api/shows/shows.ts'
 import {FavouriteShowButton} from './button.tsx'
 import styles from './page.module.css'
@@ -14,16 +14,16 @@ function findTimeDifference(startDate: number, endDate: number): number {
 }
 
 function caclulateTimeFromString(time: string): string {
-  return new Date(Date.parse(time)).toLocaleTimeString()
+  return new Date(Date.parse(time)).toLocaleTimeString('en-GB')
 }
 
 export default async function Home() {
   const result = await getLive()
-  const lives: z.infer<typeof livePayload>[] = await result.json()
+  const lives: Show[] = await result.json()
 
   const dateNow = new Date()
   const dateNowStr = dateNow.toDateString()
-  const timeNowStr = dateNow.toLocaleTimeString()
+  const timeNowStr = dateNow.toLocaleTimeString('en-GB').split(":").slice(0, -1).join(":")
 
   return (
     <div className={styles.page}>

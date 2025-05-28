@@ -1,12 +1,16 @@
 import client from '../../../../lib/db'
+import { Show } from '../../../../utils/schemas/live'
+
+export type FavouriteShow = Show & { _id: string }
 
 export async function POST(req: Request) {
-  const body = await req.json()
-  client.db('nts-db').collection('shows').createIndex({ name: 1 }, { unique: true })
-  client.db('nts-db').collection('shows').insertOne({ name: body.showName })
+  const body: Show = await req.json()
+
+  client.db('nts-db').collection('shows').createIndex({ broadcastName: 1 }, { unique: true })
+  client.db('nts-db').collection('shows').insertOne({ ...body })
 
   return Response.json({
-    message: `added ${body.showName} to favourite shows.`,
+    message: `added ${body.broadcastName} to favourite shows.`,
   })
 }
 
@@ -20,10 +24,10 @@ export async function GET() {
 }
 
 export async function DELETE(req: Request) {
-  const body = await req.json()
-  client.db('nts-db').collection('shows').deleteOne({name: body.showName})
+  const body: Show = await req.json()
+  client.db('nts-db').collection('shows').deleteOne({broadcastName: body.broadcastName})
 
   return Response.json({
-    message: `removed ${body.showName} from favourite shows.`
+    message: `removed ${body.broadcastName} from favourite shows.`
   })
 }

@@ -1,19 +1,18 @@
 'use client'
 
-import type { z } from 'zod'
-import type { livePayload } from '../utils/schemas/live'
+import type { Show } from '../utils/schemas/live'
 
 export function FavouriteShowButton(
-  props: z.infer<typeof livePayload>,
+  props: Show,
 ) {
-  const addShowToFavourites = async (showName: string) => {
+  const addShowToFavourites = async (show: Show) => {
     const res = await fetch('http://localhost:3000/api/shows/favourites', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ showName: showName }),
+      body: JSON.stringify({ ...show }),
     })
     const content = await res.json()
     console.log(content)
@@ -22,7 +21,7 @@ export function FavouriteShowButton(
   return (
     <button
       type="button"
-      onClick={() => addShowToFavourites(props.broadcastName)}
+      onClick={() => addShowToFavourites(props)}
     >
       Add show to favourites
     </button>
@@ -30,19 +29,19 @@ export function FavouriteShowButton(
 }
 
 type UnFavouriteShowButtonProps = {
-  show: string
+  broadcastName: string
 }
 export function UnFavouriteShowButton(
   props: UnFavouriteShowButtonProps,
 ) {
-  const removeShowFromFavourites = async (show: string) => {
+  const removeShowFromFavourites = async (broadcastName: string) => {
     const res = await fetch('http://localhost:3000/api/shows/favourites', {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ showName: show }),
+      body: JSON.stringify({ broadcastName: broadcastName }),
     })
     const content = await res.json()
     console.log(content)
@@ -51,7 +50,7 @@ export function UnFavouriteShowButton(
   return (
     <button
       type="button"
-      onClick={() => removeShowFromFavourites(props.show)}
+      onClick={() => removeShowFromFavourites(props.broadcastName)}
     >
       remove show from favourites
     </button>
