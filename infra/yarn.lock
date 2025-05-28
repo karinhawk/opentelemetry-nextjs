@@ -579,6 +579,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pulumi/docker@npm:^4.7.0":
+  version: 4.7.0
+  resolution: "@pulumi/docker@npm:4.7.0"
+  dependencies:
+    "@pulumi/pulumi": "npm:^3.142.0"
+    semver: "npm:^5.4.0"
+  checksum: 10c0/3f3db8a8b17b787324e1a5fb816a87fa7d28fc68f5c14c93492851b0919b12950109e79d84f89e3aee9840a89afc7cad4f4b61157c8725fb3f6bb2e00990f554
+  languageName: node
+  linkType: hard
+
 "@pulumi/kubernetes@npm:^4.0.0":
   version: 4.22.1
   resolution: "@pulumi/kubernetes@npm:4.22.1"
@@ -2268,6 +2278,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"semver@npm:^5.4.0":
+  version: 5.7.2
+  resolution: "semver@npm:5.7.2"
+  bin:
+    semver: bin/semver
+  checksum: 10c0/e4cf10f86f168db772ae95d86ba65b3fd6c5967c94d97c708ccb463b778c2ee53b914cd7167620950fc07faf5a564e6efe903836639e512a1aa15fbc9667fa25
+  languageName: node
+  linkType: hard
+
 "semver@npm:^7.1.1, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.2, semver@npm:^7.5.3":
   version: 7.7.1
   resolution: "semver@npm:7.7.1"
@@ -2625,6 +2644,7 @@ __metadata:
   resolution: "web-app-infra@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.9.4"
+    "@pulumi/docker": "npm:^4.7.0"
     "@pulumi/kubernetes": "npm:^4.0.0"
     "@pulumi/pulumi": "npm:^3.113.0"
     "@tsconfig/node22": "npm:^22.0.0"

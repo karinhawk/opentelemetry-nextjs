@@ -1,20 +1,25 @@
-import client from '../../../../db/db'
+import client from '../../../../lib/db'
 
 export async function POST(req: Request) {
   const body = await req.json()
-  await client.connect()
-  const db = client.db('nts-db')
-  const shows = db.collection('shows')
-  await shows.insertOne({ name: body })
-  client.close()
-  return Response.json({ faves: body })
+  client.db('nts-db').collection('shows').insertOne({ name: body.showName })
+  //   shows.insertOne({ 'name': body.showName })
+  const showList: never[] = []
+  //   const faveShows = shows.find()
+  //   for await (const show of faveShows) {
+  //     showList.push(show)
+  //   }
+  return Response.json({
+    data: showList,
+    message: `added ${body.showName} to favourite shows.`,
+  })
 }
 
 export async function GET() {
-  await client.connect()
-  const db = client.db('nts-db')
-  const shows = db.collection('shows')
-  const cursor = shows.find({}).next()
-  // const faves = await cursor.hasNext() ? cursor.next() : null
-  return Response.json({ shows: cursor })
+  const shows = client.db('nts-db').collection('shows').find()
+  const showList = []
+  for await (const show of shows) {
+    showList.push(show)
+  }
+  return Response.json({ shows: showList })
 }

@@ -7,7 +7,7 @@ export default function FavouriteShowButton(
   props: z.infer<typeof livePayload>,
 ) {
   const addShowToFavourites = async (showName: string) => {
-    const res = await fetch('/api/shows/favourites', {
+    const res = await fetch('http://localhost:3000/api/shows/favourites', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

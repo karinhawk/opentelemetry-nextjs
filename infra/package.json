@@ -9,6 +9,7 @@
         "typescript": "^5.0.0"
     },
     "dependencies": {
+        "@pulumi/docker": "^4.7.0",
         "@pulumi/kubernetes": "^4.0.0",
         "@pulumi/pulumi": "^3.113.0",
         "@tsconfig/strictest": "^2.0.5"
