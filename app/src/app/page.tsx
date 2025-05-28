@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { z } from 'zod'
 import type { livePayload } from '../utils/schemas/live.ts'
 import { getLive } from './api/shows/shows.ts'
-import FavouriteShowButton from './button.tsx'
+import {FavouriteShowButton} from './button.tsx'
 import styles from './page.module.css'
 
 function findTimeDifference(startDate: number, endDate: number): number {

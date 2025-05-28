@@ -2,15 +2,10 @@ import client from '../../../../lib/db'
 
 export async function POST(req: Request) {
   const body = await req.json()
+  client.db('nts-db').collection('shows').createIndex({ name: 1 }, { unique: true })
   client.db('nts-db').collection('shows').insertOne({ name: body.showName })
-  //   shows.insertOne({ 'name': body.showName })
-  const showList: never[] = []
-  //   const faveShows = shows.find()
-  //   for await (const show of faveShows) {
-  //     showList.push(show)
-  //   }
+
   return Response.json({
-    data: showList,
     message: `added ${body.showName} to favourite shows.`,
   })
 }
@@ -22,4 +17,13 @@ export async function GET() {
     showList.push(show)
   }
   return Response.json({ shows: showList })
+}
+
+export async function DELETE(req: Request) {
+  const body = await req.json()
+  client.db('nts-db').collection('shows').deleteOne({name: body.showName})
+
+  return Response.json({
+    message: `removed ${body.showName} from favourite shows.`
+  })
 }

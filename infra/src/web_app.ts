@@ -59,6 +59,7 @@ export class WebApp extends pulumi.ComponentResource {
         ],
       },
     })
+    
     const image = new docker.Image('web-app-image', {
       build: {
         context: '../app',
@@ -92,7 +93,7 @@ export class WebApp extends pulumi.ComponentResource {
             containers: [
               {
                 name: 'web-app',
-                image: image.imageName,
+                image: image.repoDigest,
                 imagePullPolicy: 'Always',
                 ports: [
                   {
