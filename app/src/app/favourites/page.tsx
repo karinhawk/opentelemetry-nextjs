@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import styles from './page.module.css'
+import type { FavouriteShow } from '../api/shows/favourites/route'
 import { UnFavouriteShowButton } from '../button'
-import { FavouriteShow } from '../api/shows/favourites/route'
+import styles from './page.module.css'
 
 export default async function Favourites() {
   const res = await fetch('http://localhost:3000/api/shows/favourites', {
@@ -18,11 +18,11 @@ export default async function Favourites() {
         {data.shows.map((show: FavouriteShow) => {
           return (
             <div key={show._id}>
-            <h4>{show.broadcastName}</h4>
+              <h4>{show.broadcastName}</h4>
               <UnFavouriteShowButton broadcastName={show.broadcastName} />
             </div>
           )
-        }) }
+        })}
       </Link>
     </main>
   )

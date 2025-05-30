@@ -2,7 +2,7 @@ import * as z from 'zod'
 
 export const livePayload = z
   .object({
-    channel_name: z.string().optional(),
+    channel_name: z.string().default('1'),
     now: z
       .object({
         start_timestamp: z.string().optional(),
@@ -28,7 +28,7 @@ export const livePayload = z
                     }),
                   )
                   .optional(),
-                location_long: z.string().optional(),
+                location_long: z.string().nullable(),
                 intensity: z.unknown().optional(),
                 media: z
                   .object({
@@ -71,10 +71,10 @@ export const livePayload = z
       links: external_links,
       moods,
       genres,
-      location: location_long,
+      location: location_long !== null ? location_long : 'an unknown location',
       intensity,
       picture: background_medium_large,
     }
   })
 
-export type Show =  z.infer<typeof livePayload>
+export type Show = z.infer<typeof livePayload>

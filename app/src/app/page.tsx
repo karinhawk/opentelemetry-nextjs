@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { z } from 'zod'
-import type { livePayload, Show } from '../utils/schemas/live.ts'
+import type { Show } from '../utils/schemas/live.ts'
 import { getLive } from './api/shows/shows.ts'
-import {FavouriteShowButton} from './button.tsx'
+import { FavouriteShowButton, ListenToShowButton } from './button.tsx'
 import styles from './page.module.css'
 
 function findTimeDifference(startDate: number, endDate: number): number {
@@ -23,7 +22,11 @@ export default async function Home() {
 
   const dateNow = new Date()
   const dateNowStr = dateNow.toDateString()
-  const timeNowStr = dateNow.toLocaleTimeString('en-GB').split(":").slice(0, -1).join(":")
+  const timeNowStr = dateNow
+    .toLocaleTimeString('en-GB')
+    .split(':')
+    .slice(0, -1)
+    .join(':')
 
   return (
     <div className={styles.page}>
@@ -60,16 +63,21 @@ export default async function Home() {
                   </ul>
                 </details>
               )}
-              <h4>social media</h4>
-              <ul>
-                {live.links.map((link: string) => {
-                  return (
-                    <a key={link} href={link}>
-                      <li key={link}>{link}</li>
-                    </a>
-                  )
-                })}
-              </ul>
+              {live.links.length > 0 && (
+                <div>
+                  <h4>social media</h4>
+                  <ul>
+                    {live.links.map((link: string) => {
+                      return (
+                        <a key={link} href={link}>
+                          <li key={link}>{link}</li>
+                        </a>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )}
+              <ListenToShowButton channelName={live.channelName} />
               <FavouriteShowButton {...live} />
             </div>
           )
