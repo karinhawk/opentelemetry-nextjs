@@ -15,11 +15,11 @@ export const livePayload = z
                 description: z.string().default('A description'),
                 external_links: z
                   .array(z.union([z.string(), z.undefined(), z.null()]))
-                  .optional(),
+                  .default([]),
                 moods: z
                   .array(z.union([z.string(), z.object({})]))
                   .min(0)
-                  .optional(),
+                  .default([]),
                 genres: z
                   .array(
                     z.object({
@@ -27,9 +27,9 @@ export const livePayload = z
                       value: z.string().optional(),
                     }),
                   )
-                  .optional(),
+                  .default([]),
                 location_long: z.string().nullable(),
-                intensity: z.unknown().optional(),
+                intensity: z.string().nullable().default('50'),
                 media: z
                   .object({
                     background_medium_large: z.string().optional(),

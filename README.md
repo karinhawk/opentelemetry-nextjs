@@ -34,3 +34,5 @@ Next, you need to port-forward the various services using `yarn forward` so we c
 
 Jaeger will be accessible at: `localhost:16686`
 The app will be accessible at `localhost:3000`
+
+<img src="image.png" alt="nts" width="300"/>

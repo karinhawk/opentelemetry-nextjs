@@ -1,3 +1,4 @@
+import { Document, WithId } from 'mongodb'
 import client from '../../../../lib/db'
 import type { Show } from '../../../../utils/schemas/live'
 
@@ -21,12 +22,12 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  const shows = client.db('nts-db').collection('shows').find()
-  const showList = []
-  for await (const show of shows) {
-    showList.push(show)
-  }
-  return Response.json({ shows: showList })
+  const showsCollection = client.db('nts-db').collection('shows')
+  const shows = await showsCollection.find().toArray()
+  const genres = await showsCollection
+    .find({}, { projection: { _id: 0, genres: 1 } })
+    .toArray()
+  return Response.json({ shows: shows, genres: genres })
 }
 
 export async function DELETE(req: Request) {
