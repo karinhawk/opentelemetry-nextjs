@@ -1,5 +1,3 @@
-- mongodb local instance
-- page for saved shows/hosts
 - shazam api/identify songs
 - error handling in a rust way
 - https://www.nts.live/api/v2/search/episodes

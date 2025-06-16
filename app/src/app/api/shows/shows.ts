@@ -7,7 +7,6 @@ export async function getLive(): Promise<Response> {
   const parsedntsLive = ntsLiveJson.results.map((result: unknown) =>
     livePayload.parse(result),
   )
-  console.log(parsedntsLive)
 
   return new Response(JSON.stringify(parsedntsLive), {
     status: 200,
