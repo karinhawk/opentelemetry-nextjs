@@ -23,26 +23,18 @@ export function GenreSelect(genres: GenreMap) {
     target: { value: SetStateAction<string> };
   }) => {
     const genre = event.target.value;
+    if (genre === "all genres") {
+      setSelectedGenreId(genre);
+      return router.push("/favourites");
+    }
     setSelectedGenreId(genre);
-    // const res = await fetch(
-    //   `http://localhost:3000/api/shows/favourites/genre?genre=${genre}`,
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       Accept: "application/json",
-    //     },
-    //   }
-    // );
-    // const hi = res.json();
-    // console.log(hi);
-
     router.push(`/favourites?genre=${genre}`);
   };
 
   return (
     <select value={selectedGenreId} onChange={handleSelectChange}>
       filter by genre
-      {Object.entries(genres).map(([key, genreItem]) => {
+      {Object.entries(genres).map(([_key, genreItem]) => {
         return genreItem.genres.map((genre) => (
           <option key={genre.id} value={genre.value}>
             {genre.value}

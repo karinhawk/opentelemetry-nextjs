@@ -25,6 +25,11 @@ export default async function Favourites({
   }: { shows: Array<FavouriteShow>; genres: Array<GenreItem> } =
     await res.json();
 
+  const allGenresItem: GenreItem = {
+    genres: [{ id: "all", value: "all genres" }],
+  };
+  genres.unshift(allGenresItem);
+
   return (
     <main className={styles.main}>
       <Link href="/">
