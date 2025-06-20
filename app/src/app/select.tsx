@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { type SetStateAction, useState } from "react";
 
 type Genre = {
@@ -16,21 +17,26 @@ type GenreMap = {
 
 export function GenreSelect(genres: GenreMap) {
   const [selectedGenreId, setSelectedGenreId] = useState("choose a genre");
+  const router = useRouter();
 
   const handleSelectChange = async (event: {
     target: { value: SetStateAction<string> };
   }) => {
     const genre = event.target.value;
     setSelectedGenreId(genre);
-    const res = await fetch(
-      `http://localhost:3000/api/shows/favourites/genre?genre=${genre}`,
-      {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-        },
-      }
-    );
+    // const res = await fetch(
+    //   `http://localhost:3000/api/shows/favourites/genre?genre=${genre}`,
+    //   {
+    //     method: "GET",
+    //     headers: {
+    //       Accept: "application/json",
+    //     },
+    //   }
+    // );
+    // const hi = res.json();
+    // console.log(hi);
+
+    router.push(`/favourites?genre=${genre}`);
   };
 
   return (

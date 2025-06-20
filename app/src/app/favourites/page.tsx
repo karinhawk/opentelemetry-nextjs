@@ -5,10 +5,20 @@ import { LiveShow } from "../live_show";
 import { type GenreItem, GenreSelect } from "../select";
 import styles from "./page.module.css";
 
-export default async function Favourites() {
-  const res = await fetch("http://localhost:3000/api/shows/favourites", {
-    method: "GET",
-  });
+export default async function Favourites({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const { genre = undefined } = await searchParams;
+  const urlPathSuffix = genre ? `/genre?genre=${genre}` : "";
+
+  const res = await fetch(
+    `http://localhost:3000/api/shows/favourites${urlPathSuffix}`,
+    {
+      method: "GET",
+    }
+  );
   const {
     shows,
     genres,
