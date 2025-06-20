@@ -3,10 +3,11 @@
 import { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import type { Show } from "../utils/schemas/live";
+import Link from "next/link";
 
 export function FavouriteShowButton(props: Show) {
   const addShowToFavourites = async (show: Show) => {
-    const res = await fetch("http://localhost:3000/api/shows/favourites", {
+    await fetch("http://localhost:3000/api/shows/favourites", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -14,7 +15,6 @@ export function FavouriteShowButton(props: Show) {
       },
       body: JSON.stringify({ ...show }),
     });
-    const content = await res.json();
   };
 
   return (
@@ -29,7 +29,7 @@ type UnFavouriteShowButtonProps = {
 };
 export function UnFavouriteShowButton(props: UnFavouriteShowButtonProps) {
   const removeShowFromFavourites = async (broadcastName: string) => {
-    return await fetch("http://localhost:3000/api/shows/favourites", {
+    await fetch("http://localhost:3000/api/shows/favourites", {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -40,12 +40,14 @@ export function UnFavouriteShowButton(props: UnFavouriteShowButtonProps) {
   };
 
   return (
-    <button
-      type="button"
-      onClick={() => removeShowFromFavourites(props.broadcastName)}
-    >
-      Remove show from favourites
-    </button>
+    <Link href="/favourites">
+      <button
+        type="button"
+        onClick={() => removeShowFromFavourites(props.broadcastName)}
+      >
+        Remove show from favourites
+      </button>
+    </Link>
   );
 }
 

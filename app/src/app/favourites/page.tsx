@@ -25,7 +25,7 @@ export default async function Favourites() {
       {shows.map((show: FavouriteShow) => {
         return (
           <div key={show._id}>
-            <LiveShow {...show} />
+            <LiveShow show={show} isFavourite={true} />
             <UnFavouriteShowButton broadcastName={show.broadcastName} />
           </div>
         );
