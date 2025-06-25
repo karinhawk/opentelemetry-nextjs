@@ -1,31 +1,31 @@
 {
-    "name": "web-app-infra",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "devDependencies": {
-        "@biomejs/biome": "^1.9.4",
-        "@tsconfig/node22": "^22.0.0",
-        "@types/node": "^18",
-        "typescript": "^5.0.0"
-    },
-    "dependencies": {
-        "@pulumi/docker": "^4.7.0",
-        "@pulumi/kubernetes": "^4.23.0",
-        "@pulumi/pulumi": "^3.171.0",
-        "@tsconfig/strictest": "^2.0.5"
-    },
-    "scripts": {
-        "build": "rm -rf dist && tsc",
-        "pulumi": "pulumi",
-        "lint": "biome check .",
-        "lint:fix": "biome check --write .",
-        "pulumi:local": "pulumi login file://./state",
-        "pulumi:deploy": "yarn build && echo 'Successfully built package, running pulumi up...' && pulumi up",
-        "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy",
-        "forward": "kubectl port-forward svc/jaeger-collector 4317:4317 & kubectl port-forward svc/jaeger-query 16686:16686 & kubectl port-forward svc/web-app 3000:3000 & kubectl port-forward svc/mongodb 27017:27017"
-    },
-    "packageManager": "yarn@4.3.1",
-    "engines": {
-        "node": ">=22.11.0"
-    }
+  "name": "web-app-infra",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tsconfig/node22": "^22.0.0",
+    "@tsconfig/strictest": "^2.0.5",
+    "@types/node": "^18",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@pulumi/docker": "^4.7.0",
+    "@pulumi/kubernetes": "^4.23.0",
+    "@pulumi/pulumi": "^3.171.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "pulumi": "pulumi",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "pulumi:local": "pulumi login file://./state",
+    "pulumi:deploy": "yarn build && echo 'Successfully built package, running pulumi up...' && pulumi up",
+    "pulumi:teardown": "echo 'Tearing down stack resources and leaving stack...' && pulumi destroy",
+    "forward": "kubectl port-forward svc/jaeger-collector 4317:4317 & kubectl port-forward svc/jaeger-query 16686:16686 & kubectl port-forward svc/web-app 3000:3000 & kubectl port-forward svc/mongodb 27017:27017 & kubectl port-forward svc/proxy 3001:3001"
+  },
+  "packageManager": "yarn@4.3.1",
+  "engines": {
+    "node": ">=22.11.0"
+  }
 }

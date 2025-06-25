@@ -79,3 +79,34 @@ export function ListenToShowButton(props: ListenToShowButtonProps) {
     </div>
   );
 }
+
+type IdentifySongButtonProps = {
+  channelName: string;
+};
+
+export function IdentifySongButton(props: IdentifySongButtonProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const identify = async (channelName: string) => {
+    setIsLoading(true);
+
+    const currentTime = Date.now().toString();
+    const streamNumber = channelName === "2" ? channelName : "";
+    const url = encodeURIComponent(
+      `https://stream-relay-geo.ntslive.net/stream${streamNumber}?client=NTSWebApp&device=Missing&t=${currentTime}`
+    );
+
+    const res = await fetch(`http://proxy.default.svc:3001/identify/${url}`);
+    const data = await res.json();
+    setIsLoading(false);
+    console.log(data);
+  };
+
+  return (
+    <div>
+      <button type="button" onClick={() => identify(props.channelName)}>
+        What's playing?
+      </button>
+      {isLoading && <p>Identifying song... this may take a moment</p>}
+    </div>
+  );
+}

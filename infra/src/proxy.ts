@@ -1,59 +1,59 @@
-import * as docker from "@pulumi/docker";
 import * as k8s from "@pulumi/kubernetes";
 import * as pulumi from "@pulumi/pulumi";
+import * as docker from "@pulumi/docker";
 
-type WebAppArgs = {
+type ProxyArgs = {
   localRegistry: string;
 };
 
-export class WebApp extends pulumi.ComponentResource {
+export class Proxy extends pulumi.ComponentResource {
   constructor(
     name: string,
-    args: WebAppArgs,
+    args: ProxyArgs,
     opts?: pulumi.ComponentResourceOptions
   ) {
-    super("web-app", name, opts);
+    super("proxy", name, opts);
 
     const { localRegistry } = args;
 
-    const image = new docker.Image("web-app-image", {
+    const image = new docker.Image("proxy-image", {
       build: {
-        context: "../app",
-        dockerfile: "../app/Dockerfile",
+        context: "../proxy",
+        dockerfile: "../proxy/Dockerfile",
         platform: "linux/arm64",
       },
-      imageName: `${localRegistry}/web-app/app`,
+      imageName: `${localRegistry}/web-app/proxy`,
       skipPush: false,
     });
 
-    new k8s.apps.v1.Deployment("wep-app-deployment", {
+    new k8s.apps.v1.Deployment("proxy-deployment", {
       metadata: {
         labels: {
-          app: "web-app",
+          app: "proxy",
         },
       },
       spec: {
         replicas: 1,
         selector: {
           matchLabels: {
-            app: "web-app",
+            app: "proxy",
           },
         },
         template: {
           metadata: {
             labels: {
-              app: "web-app",
+              app: "proxy",
             },
           },
           spec: {
             containers: [
               {
-                name: "web-app",
+                name: "proxy",
                 image: image.repoDigest,
                 imagePullPolicy: "Always",
                 ports: [
                   {
-                    containerPort: 3000,
+                    containerPort: 3001,
                   },
                 ],
               },
@@ -63,20 +63,20 @@ export class WebApp extends pulumi.ComponentResource {
       },
     });
 
-    new k8s.core.v1.Service("web-app-service", {
+    new k8s.core.v1.Service("proxy-service", {
       metadata: {
-        name: "web-app",
+        name: "proxy",
       },
       spec: {
         selector: {
-          app: "web-app",
+          app: "proxy",
         },
         type: "NodePort",
         ports: [
           {
-            port: 3000,
-            targetPort: 3000,
-            nodePort: 30000,
+            port: 3001,
+            targetPort: 3001,
+            nodePort: 31000,
           },
         ],
       },

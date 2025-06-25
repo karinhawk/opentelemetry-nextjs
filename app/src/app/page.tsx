@@ -1,7 +1,11 @@
 import Link from "next/link";
 import type { Show } from "../utils/schemas/live.ts";
 import { getLive } from "./api/shows/shows.ts";
-import { FavouriteShowButton, ListenToShowButton } from "./button.tsx";
+import {
+  FavouriteShowButton,
+  ListenToShowButton,
+  IdentifySongButton,
+} from "./button.tsx";
 import { LiveShow } from "./live_show.tsx";
 import styles from "./page.module.css";
 
@@ -32,6 +36,7 @@ export default async function Home() {
             <div key={live.broadcastName}>
               <LiveShow show={live} />
               <ListenToShowButton channelName={live.channelName} />
+              <IdentifySongButton channelName={live.channelName} />
               <FavouriteShowButton {...live} />
             </div>
           );
