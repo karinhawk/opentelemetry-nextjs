@@ -1,0 +1,41 @@
+.show {
+  display: block;
+  overflow: auto;
+  margin-bottom: 1rem;
+}
+
+.channel_name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.location {
+  margin-bottom: 1rem;
+}
+
+.time {
+  margin-bottom: 1rem;
+}
+
+.title {
+}
+
+.pic {
+  width: 30vw;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.desc {
+  width: 30vw;
+  margin-bottom: 1rem;
+}
+
+.list {
+  list-style-position: unset;
+}
+
+.list_heading {
+  margin-bottom: 0.5rem;
+  font-weight: 1000;
+}

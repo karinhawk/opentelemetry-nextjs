@@ -4,6 +4,7 @@ import { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import type { Show } from "../utils/schemas/live";
 import Link from "next/link";
+import styles from "./button.module.css";
 
 export function FavouriteShowButton(props: Show) {
   const addShowToFavourites = async (show: Show) => {
@@ -18,7 +19,11 @@ export function FavouriteShowButton(props: Show) {
   };
 
   return (
-    <button type="button" onClick={() => addShowToFavourites(props)}>
+    <button
+      className={styles.button}
+      type="button"
+      onClick={() => addShowToFavourites(props)}
+    >
       Add show to favourites
     </button>
   );
@@ -42,6 +47,7 @@ export function UnFavouriteShowButton(props: UnFavouriteShowButtonProps) {
   return (
     <Link href="/favourites">
       <button
+        className={styles.button}
         type="button"
         onClick={() => removeShowFromFavourites(props.broadcastName)}
       >
@@ -67,8 +73,12 @@ export function ListenToShowButton(props: ListenToShowButtonProps) {
   };
 
   return (
-    <div>
-      <button type="button" onClick={() => play(props.channelName)}>
+    <div className={styles.listen}>
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => play(props.channelName)}
+      >
         Listen
       </button>
       {url && (

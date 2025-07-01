@@ -1,0 +1,29 @@
+.button {
+  background-color: #696969;
+  border: none;
+  color: white;
+  padding: 0.4rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.15rem #797777;
+}
+
+.listen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.button:hover {
+  background-color: #5c5a5a;
+}
+
+.button:active {
+  background-color: #5c5a5a;
+  box-shadow: 0 0.15rem #797777;
+  transform: translateY(0.1rem);
+}

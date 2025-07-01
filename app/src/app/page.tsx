@@ -20,22 +20,26 @@ export default async function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <h1>NTS</h1>
-        <h3>
-          {dateNowStr} - {timeNowStr}
-        </h3>
-        <Link href="/favourites">
-          <h3>FAVOURITES</h3>
-        </Link>
-        {lives.map((live) => {
-          return (
-            <div key={live.broadcastName}>
-              <LiveShow show={live} />
-              <ListenToShowButton channelName={live.channelName} />
-              <FavouriteShowButton {...live} />
-            </div>
-          );
-        })}
+        <div className={styles.header}>
+          <h1>NTS</h1>
+          <h3>
+            {dateNowStr} - {timeNowStr}
+          </h3>
+          <Link className={styles.favourites} href="/favourites">
+            <h3>❤️ FAVOURITES ❤️</h3>
+          </Link>
+        </div>
+        <div className={styles.lives}>
+          {lives.map((live) => {
+            return (
+              <div key={live.broadcastName}>
+                <LiveShow show={live} />
+                <ListenToShowButton channelName={live.channelName} />
+                <FavouriteShowButton {...live} />
+              </div>
+            );
+          })}
+        </div>
       </main>
     </div>
   );

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Show } from "../utils/schemas/live";
 import { caclulateTimeFromString, findTimeDifference } from "../utils/time";
+import styles from "./live_show.module.css";
 
 type LiveShowProps = {
   show: Show;
@@ -13,21 +14,27 @@ export function LiveShow(props: LiveShowProps) {
   const endTimeDate = caclulateTimeFromString(show.endTime);
 
   return (
-    <div key={show.broadcastName}>
-      <h3>{show.broadcastName}</h3>
-      <h4>Broadcasting from {show.location}</h4>
+    <div className={styles.show} key={show.broadcastName}>
+      <h3 className={styles.channel_name}>{show.broadcastName}</h3>
+      <h4 className={styles.location}>Broadcasting from {show.location}</h4>
       {!isFavourite && (
-        <p>
+        <p className={styles.time}>
           {startTimeDate} to {endTimeDate} (ends in{" "}
           {findTimeDifference(Date.now(), Date.parse(show.endTime))} minutes!)
         </p>
       )}
-      <Image src={show.picture} width={270} height={180} alt="piccy" />
-      <p>{show.description}</p>
+      <Image
+        className={styles.pic}
+        src={show.picture}
+        width={270}
+        height={180}
+        alt="piccy"
+      />
+      <p className={styles.desc}>{show.description}</p>
       {show.genres.length > 0 && (
         <details>
-          <summary>genres</summary>
-          <ul>
+          <summary className={styles.list_heading}>genres</summary>
+          <ul className={styles.list}>
             {show.genres.map((genre: Record<string, string>) => {
               return <li key={genre.id}>{genre.value}</li>;
             })}
@@ -36,8 +43,9 @@ export function LiveShow(props: LiveShowProps) {
       )}
       {show.links.length > 0 && (
         <div>
-          <h4>social media</h4>
-          <ul>
+          <br />
+          <h4 className={styles.list_heading}>social media</h4>
+          <ul className={styles.list}>
             {show.links.map((link: string) => {
               return (
                 <a key={link} href={link} target="blank">
