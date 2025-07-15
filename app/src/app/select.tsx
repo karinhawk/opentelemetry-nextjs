@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { type SetStateAction, useState } from "react";
+import styles from "./page.module.css";
 
 type Genre = {
   id: string;
@@ -32,12 +33,16 @@ export function GenreSelect(genres: GenreMap) {
   };
 
   return (
-    <select value={selectedGenreId} onChange={handleSelectChange}>
+    <select
+      className={styles.select}
+      value={selectedGenreId}
+      onChange={handleSelectChange}
+    >
       filter by genre
       {Object.entries(genres).map(([_key, genreItem]) => {
         return genreItem.genres.map((genre) => (
           <option key={genre.id} value={genre.value}>
-            {genre.value}
+            {genre.value.toLowerCase()}
           </option>
         ));
       })}

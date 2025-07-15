@@ -32,19 +32,18 @@ export default async function Favourites({
 
   return (
     <main className={styles.main}>
-      <Link href="/">
-        <h1>NTS</h1>
-      </Link>
       <h2>Favourite Shows</h2>
       {genres && <GenreSelect {...genres} />}
-      {shows.map((show: FavouriteShow) => {
-        return (
-          <div key={show._id}>
-            <LiveShow show={show} isFavourite={true} />
-            <UnFavouriteShowButton broadcastName={show.broadcastName} />
-          </div>
-        );
-      })}
+      <div className={styles.shows}>
+        {shows.map((show: FavouriteShow) => {
+          return (
+            <div key={show._id}>
+              <LiveShow show={show} isFavourite={true} />
+              <UnFavouriteShowButton broadcastName={show.broadcastName} />
+            </div>
+          );
+        })}
+      </div>
     </main>
   );
 }

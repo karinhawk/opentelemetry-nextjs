@@ -22,9 +22,17 @@
   width: 80vw;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .favourites:hover {
-  background-color: #696969; /* Green */
+  background-color: #696969;
+  color: white;
+}
+
+.select {
+  width: 20vw;
+  height: 3vh;
+  border-radius: 0.2rem;
+  background-color: #696969;
   color: white;
 }

@@ -2,3 +2,5 @@
 - error handling in a rust way
 - https://www.nts.live/api/v2/search/episodes
 - /getMyScheduleEurope
+- clock client component using use state
+- map for locayshons

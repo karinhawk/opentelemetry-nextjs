@@ -1,6 +1,6 @@
 ## Karin's Demo App
 
-This repository aims to compile some cool things together into a project. The app directory contains the app code, which is built into a docker image and deployed in the infra directory.
+This repository aims to compile some cool things together into a project. The app directory contains the app code, which is built into a docker image and deployed in the infra directory using Kubernetes.
 
 ## Stack
 
@@ -26,7 +26,7 @@ Run `yarn` to install all dependencies. Ensure docker desktop is running and has
 
 Then run the following:
 
-`pulumi:local` - This will log you into a local pulumi state .
+`pulumi:local` - This will log you into a local pulumi state.
 
 `pulumi:deploy` - This will deploy the app. Follow the prompts and name the app "app".
 

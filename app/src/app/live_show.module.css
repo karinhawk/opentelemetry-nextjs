@@ -1,12 +1,15 @@
 .show {
+  width: 30vw;
   display: block;
   overflow: auto;
   margin-bottom: 1rem;
 }
 
 .channel_name {
+  width: 30vw;
   font-size: 2rem;
   margin-bottom: 1rem;
+  text-wrap: wrap;
 }
 
 .location {
@@ -15,9 +18,6 @@
 
 .time {
   margin-bottom: 1rem;
-}
-
-.title {
 }
 
 .pic {

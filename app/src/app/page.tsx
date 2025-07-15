@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Show } from "../utils/schemas/live.ts";
 import { getLive } from "./api/shows/shows.ts";
 import { FavouriteShowButton, ListenToShowButton } from "./button.tsx";
@@ -9,26 +8,9 @@ export default async function Home() {
   const result = await getLive();
   const lives: Show[] = await result.json();
 
-  const dateNow = new Date();
-  const dateNowStr = dateNow.toDateString();
-  const timeNowStr = dateNow
-    .toLocaleTimeString("en-GB")
-    .split(":")
-    .slice(0, -1)
-    .join(":");
-
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <div className={styles.header}>
-          <h1>NTS</h1>
-          <h3>
-            {dateNowStr} - {timeNowStr}
-          </h3>
-          <Link className={styles.favourites} href="/favourites">
-            <h3>❤️ FAVOURITES ❤️</h3>
-          </Link>
-        </div>
         <div className={styles.lives}>
           {lives.map((live) => {
             return (
