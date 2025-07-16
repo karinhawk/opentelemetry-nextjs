@@ -1,13 +1,23 @@
 .main {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+.content {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .shows {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+  overflow-y: scroll;
 }
