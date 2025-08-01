@@ -1,14 +1,23 @@
-import client from "../../../../../lib/db";
 import { NextRequest } from "next/server";
+import client from "../../../../../lib/db";
+
+function escapeRegex(input: string) {
+  return input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 export async function GET(req: NextRequest) {
   const params = req.nextUrl.searchParams;
-  const encodedGenreInput = params.get("genre");
-  const genreInput = decodeURIComponent(encodedGenreInput!);
+  const encodedSearchInput = params.get("search");
+  const searchInput = decodeURIComponent(encodedSearchInput!);
 
   const showsCollection = client.db("nts-db").collection("shows");
   const shows = await showsCollection
-    .find({ "genres.value": genreInput })
+    .find({
+      broadcastName: {
+        $regex: new RegExp(escapeRegex(`${searchInput}`)),
+        $options: "i",
+      },
+    })
     .toArray();
   const genres = await showsCollection
     .find({}, { projection: { _id: 0, genres: 1 } })

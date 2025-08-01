@@ -21,3 +21,9 @@
   align-items: center;
   overflow-y: scroll;
 }
+
+.inputs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
