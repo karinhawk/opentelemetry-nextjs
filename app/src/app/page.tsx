@@ -1,7 +1,10 @@
 import type { Show } from "../utils/schemas/live.ts";
 import { getLive } from "./api/shows/shows.ts";
-import { FavouriteShowButton, ListenToShowButton } from "./button.tsx";
-import { LiveShow } from "./live_show.tsx";
+import {
+  FavouriteShowButton,
+  ListenToShowButton,
+} from "./components/button.tsx";
+import { LiveShow } from "./components/live_show.tsx";
 import styles from "./page.module.css";
 
 export default async function Home() {

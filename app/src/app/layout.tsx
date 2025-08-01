@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { register } from "../instrumentation";
-import Header from "./header";
+import Header from "./components/header";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {

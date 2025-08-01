@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import type { Show } from "../utils/schemas/live";
+import type { Show } from "../../utils/schemas/live";
 import Link from "next/link";
 import styles from "./button.module.css";
 

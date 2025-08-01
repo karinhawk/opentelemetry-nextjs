@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { type SetStateAction, useState } from "react";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 
 type Genre = {
   id: string;

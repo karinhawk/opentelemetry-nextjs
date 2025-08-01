@@ -2,5 +2,8 @@
 - error handling in a rust way
 - https://www.nts.live/api/v2/search/episodes
 - /getMyScheduleEurope
+  - https://www.nts.live/api/v2/radio/schedule/{channelName}
 - clock client component using use state
 - map for locayshons
+  - leaflet https://leafletjs.com/
+  - csv of lats/longs of major cities

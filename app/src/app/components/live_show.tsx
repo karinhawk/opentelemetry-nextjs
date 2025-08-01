@@ -1,6 +1,6 @@
 import Image from "next/image";
-import type { Show } from "../utils/schemas/live";
-import { caclulateTimeFromString, findTimeDifference } from "../utils/time";
+import type { Show } from "../../utils/schemas/live";
+import { caclulateTimeFromString, findTimeDifference } from "../../utils/time";
 import styles from "./live_show.module.css";
 
 type LiveShowProps = {
